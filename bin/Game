@@ -1,0 +1,14 @@
+#!/usr/bin/env php
+<?php
+
+require_once 'vendor/autoload.php';
+
+$tileRepository = new \Magwel\Domino\Infrastructure\Repository\Tile\InMemoryTileRepository();
+$playerRepository = new \Magwel\Domino\Infrastructure\Repository\Player\InMemoryPlayerRepository();
+$boardRepository = new \Magwel\Domino\Infrastructure\Repository\Board\InMemoryBoardRepository();
+$output = new \Magwel\Domino\UI\Console\ConsoleOutput();
+
+$game = new \Magwel\Domino\Game($tileRepository, $playerRepository, $boardRepository, $output);
+$game->setupForPlayers(['Alice', 'Bob']);
+
+$game->start();
